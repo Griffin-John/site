@@ -1,0 +1,11 @@
+<div class="base_form">
+  <div class="center">
+    <a style="font-size:28px">Регистрация</a>
+
+    <%= render "form", user: @user %>
+
+    <form action="/users/login" style="margin-top: 20px">
+      <button>Перейти к авторизации</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Site</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Oswald|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/stylesheets/application.css">
+  </head>
+
+  <body style="background: #fff4e8">
+    <header class="header_form">
+      <div class="header_style">
+        <%if User.find_by(id:session[:user_id])%>
+          <a style="position: fixed; left: 56%; top:50%; transform: translate(0%, -50%);" href="/users/<%=session[:user_id]%>"> Вы вошли как: <%=User.find_by(id:session[:user_id]).name%><a>
+        <%else%>
+          <a style="position: fixed; left: 56%; top:50%; transform: translate(0%, -50%);" >Вы вошли как: Гость</a>
+        <%end%>
+        <a style="position: fixed; left: 31%; top:50%;  transform: translate(-50%, -50%);" href="/">Главная страница</a>
+        <a style="position: fixed; left: 39%; top:50%; transform: translate(-50%, -50%);" href="/users/login">Вход</a>
+        <a style="position: fixed; left: 48%; top:50%; transform: translate(-50%, -50%);" href="/users/list">Список пользователей<a>
+      </div>
+    </header>
+    
+
+    <div class="rotate-shadows" style="position: fixed; top: 15%; left: 0%;"></div>
+    <div class="rotate-shadows" style="position: fixed; top: 15%; left: 100%;"></div>
+
+    <div class="rotate-shadows" style="width: 300px; height: 400px; position: fixed; top: 40%; left: 0%;"></div>
+    <div class="rotate-shadows" style="width: 300px; height: 400px; position: fixed; top: 40%; left: 100%;"></div>
+
+
+    <%= yield %>
+
+  </body>
+</html>

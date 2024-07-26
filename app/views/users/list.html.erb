@@ -1,0 +1,16 @@
+<body>
+    
+    <div class="base_form">
+        <a style="font-size:28px">Всего пользователей: <%= User.count %></a>
+
+        <ul>
+        <% @users.each do |user| %>
+            <li>
+            <%= link_to user.name, user %>
+            </li>
+        <% end %>
+        </ul>
+        <div class = "center"> <%= paginate @users %> </div>
+
+    </div>
+</body>

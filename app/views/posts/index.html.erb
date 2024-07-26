@@ -1,0 +1,15 @@
+<body>
+    
+    <div class="base_form">
+        <a style="font-size:28px">Всего новостных постов: <%= Post.count %></a>
+
+        <ul>
+        <% @posts.each do |post| %>
+            <li style="margin-bottom:10px">
+                <a class="large_text" style="color: rgb(0, 0, 0); font-weight: 500;" href="/posts/<%= post.id %>"><%= post.title %></a>
+            </li>
+        <% end %>
+        </ul>
+        <div class = "center"> <%= paginate @posts %> </div>
+    </div>
+</body>

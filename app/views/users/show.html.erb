@@ -1,0 +1,54 @@
+<body>
+
+<%if @user%>
+    <div class="base_form" style="margin-top: 5%">
+        <p>Имя пользователя: <%= @user.name %></p>
+        <p>Роль: <%= @user.role %></p>
+        <%if @user.id == session[:user_id]%>
+            <p>Это ваш профиль!</p>
+            <br>
+            <%= link_to "Редактировать профиль", edit_user_path(@user), data: { confirm: "Вы уверены?" }%>
+            <div style="margin-top:10px"><%= link_to "Удалить профиль", user_path(@user), method: :delete, data: { confirm: "Вы уверены?" } %></div>
+        <%end%>
+        <% if User.find_by(id:session[:user_id]) %>
+            <% if User.find_by(id:session[:user_id]).role == "admin" %>
+                <br>
+                <form accept-charset="UTF-8" action="/users/<%=@user.id%>/change_role" method="post">
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+                    <select name="user[role]" id="user_role">
+                        <option value="reader">Читатель</option>
+                        <option value="redactor">Редактор</option>
+                        <option value="admin">Админ</option>
+                    </select>
+
+                    <input type="submit" value="Утвердить!">
+                </form>
+                <a href="/users/clear">Выход</a>
+            <% end %>
+        <% end %>
+    </div>
+
+    <%if @user.id == session[:user_id] and ["admin", "redactor"].include? @user.role %>
+        <div class="base_form" style="margin-top: 2%">
+            <h2>Создать новый пост:</h2>
+            <%= render "posts/form_post_create", user: @user %>
+        </div>
+    <% end %>
+
+    <div class="base_form" style="margin-top: 2%">
+        <%if @user.role == "reader" and @user.posts.length == 0%>
+            <h2>Вы не можете писать статьи!</h2>
+        <%else%>
+            <h2>Опубликованные статьи:</h2>
+            <% @posts.each do |post| %>
+                <% if post.id != nil %> <%= render "posts/form_post_show", post: post %> <% end %>
+            <% end %>
+            <div class = "center"> <%= paginate @posts %> </div>
+        <%end%>
+    </div>
+<%else%>
+    <h1 class="base_form">Пользователь не найден</h1>
+<%end%>
+
+</body>

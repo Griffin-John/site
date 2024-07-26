@@ -1,0 +1,13 @@
+<% if @post%>
+    <div class="base_form">
+        <% if User.find_by(id:session[:user_id]) %>
+            <% if ["admin", "redactor"].include? User.find_by(id:session[:user_id]).role %>
+                    <%= link_to "Редактировать профиль", edit_post_path(@post), data: { confirm: "Вы уверены?" }%>
+                <div style="margin-top:10px"><%= link_to "Удалить Статью", post_path(@post), method: :delete, data: { confirm: "Вы уверены?" } %></div>
+            <% end %>
+        <% end %>
+        <%= render "form_post_show", post: @post %>
+    <%else%>
+        <h1 class="base_form">Статья не найдена!</h1>
+    <%end%>
+</div>

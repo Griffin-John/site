@@ -1,0 +1,11 @@
+<form accept-charset="UTF-8" action="/users/<%=session[:user_id]%>/posts" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+    <p style="margin-bottom:5px">Заголовок</p>
+    <textarea name="post[title]" class="text_box", style="margin-top:0px; height:20px"></textarea>
+
+    <p style="margin-bottom:5px; margin-top:0px">Текст</p>
+    <textarea name="post[body]" class="text_box", style="margin-top:0px; height:152px"></textarea>
+
+    <input type="submit" value="Утвердить!">
+</form>

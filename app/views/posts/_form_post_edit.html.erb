@@ -1,0 +1,9 @@
+<%= form_with model: post do |form| %>
+  <p style="margin-bottom:5px">Заголовок</p>
+  <textarea name="post[title]" class="text_box", style="margin-top:0px; height:20px"><%=post.title%></textarea>
+
+  <p style="margin-bottom:5px; margin-top:0px">Текст</p>
+  <textarea name="post[body]" class="text_box", style="margin-top:0px; height:152px"><%=post.body%></textarea>
+
+  <%= form.submit value="Утвердить!" %>
+<% end %>

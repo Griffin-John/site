@@ -1,0 +1,6 @@
+<div class="text_box">
+    <a class="small_text"><%= post.updated_at %><a>
+    <a class="small_text" style="margin-left:5px; font-size: 14px;" href="/users/<%= post.user_id %>"><%= User.find_by(id:post.user_id).name %><a><br><br>
+    <a class="large_text" style="margin-top:10px; margin-bottom:10px;" href="/posts/<%= post.id %>"><%= post.title %><a><br><br>
+    <%= sanitize post.body %>
+</div>

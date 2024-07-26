@@ -1,0 +1,58 @@
+<%= form_with model: user do |form| %>
+
+  <div style="margin-top: 20px">
+    <%= form.label "Имя" %><br>
+    <%= form.text_field :name%>
+    <% user.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div style="margin-top: 20px">
+    <%= form.label "Логин" %><br>
+    <%= form.text_field :login %>
+    <% user.errors.full_messages_for(:login).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div style="margin-top: 20px">
+    <label for="user_password">Пароль</label><br>
+    <input id="user_password" name="user[password]" type="password" />
+    <% user.errors.full_messages_for(:password).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div style="margin-top: 20px">
+    <label for="user_password_confirmation">Подтверждение пароля</label><br>
+    <input id="user_password_confirmation" name="user[password_confirmation]" type="password" />
+    <% user.errors.full_messages_for(:password_confirmation).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div style="margin-top: 20px">
+      <%= form.label "Роль" %><br>
+      <div>
+      <%= form.radio_button :role, 'reader'%>
+      <%= form.label :role, "Читатель", :value => "reader" %>
+      </div>
+      <div>
+      <%= form.radio_button :role, 'redactor'%>
+      <%= form.label :role, "Редактор", :value => "redactor" %>
+      </div>
+      <div>
+      <%= form.radio_button :role, 'admin'%>
+      <%= form.label :role, "Админ", :value => "admin" %>
+      </div>
+      <% user.errors.full_messages_for(:role).each do |message| %>
+        <div><%= message %></div> 
+      <% end %>
+  </div>
+
+  <div style="margin-top: 20px">
+    <%= form.submit "Утвердить!"%>
+  </div>
+
+<% end %>

@@ -1,0 +1,28 @@
+<div class="base_form">
+    <div class="center">
+        <form action = '/users/login' method = 'POST'>
+            <a style="font-size:28px">Авторизация</a>
+            
+            <input type = 'hidden' name = 'authenticity_token' value = '<%=form_authenticity_token%>'>
+            <div style="margin-top:20px">
+                <div>
+                    <a>Логин</a><br>
+                    <input style="margin-bottom:20px" type = 'login' name = 'user[login]'><br>
+                </div>
+                <div>
+                    <a>Пароль</a><br>
+                    <input style="margin-bottom:20px" type = 'password' name = 'user[password]'><br>
+                </div>
+            </div>
+            <input type = 'submit' name = 'submit' value = 'Войти'>
+        </form>
+        
+        <% if flash.alert %>
+            <p><%= flash.alert %></p>
+        <% end %>
+        
+        <form action="/users/new" style="margin-top: 20px">
+            <button>Перейти к регистрации</button>
+        </form>
+    <div>
+</div>
